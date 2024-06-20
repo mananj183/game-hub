@@ -7,6 +7,7 @@ import useData from "./use-data";
 export type Genre = {
     id: number;
     name: string;
+    image_background: string,
 };
 const useGenres = () => useData<Genre>('/genres');
 
