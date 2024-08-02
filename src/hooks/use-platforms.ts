@@ -6,6 +6,6 @@ export type Platform = {
     slug: string;
 }
 
-const usePlatforms = () => useData<Platform>('/platforms/list/parents');
+const usePlatforms = () => useData<Platform>('/platforms/lists/parents');
 
 export default usePlatforms;
