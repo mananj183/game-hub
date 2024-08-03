@@ -10,6 +10,6 @@ export type Game = {
     parent_platforms: {platform : Platform}[];   // Parent platform -> is an array of object which has a property 'platform' of the type : Platform
     metacritic: number;
   };
-const useGames = (gameQuery: GameQuery) => useData<Game>('/games', {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering: gameQuery.ordering}}, [gameQuery]);
+const useGames = (gameQuery: GameQuery) => useData<Game>('/games', {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering: gameQuery.ordering, search: gameQuery.search}}, [gameQuery]);
 
 export default useGames;
