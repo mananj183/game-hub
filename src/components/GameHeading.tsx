@@ -10,7 +10,7 @@ const GameHeading = ({ genre, platform }: Props) => {
   let headingText = `${platform?.name || ""} ${genre?.name || ""} Games`;
   return (
     <Heading as="h1" fontSize="5xl">
-      {headingText} Games
+      {headingText}
     </Heading>
   );
 };
