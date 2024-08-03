@@ -9,6 +9,7 @@ export type Game = {
     background_image: string;
     parent_platforms: {platform : Platform}[];   // Parent platform -> is an array of object which has a property 'platform' of the type : Platform
     metacritic: number;
+    rating_top: number
   };
 const useGames = (gameQuery: GameQuery) => useData<Game>('/games', {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering: gameQuery.ordering, search: gameQuery.search}}, [gameQuery]);
 
