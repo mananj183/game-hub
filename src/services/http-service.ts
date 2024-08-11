@@ -13,7 +13,7 @@ class HttpService {
 
     getAll<T>(){
         const controller = new AbortController();
-        const req = apiClient.get<T>(this.endpoint, {signal: controller.signal});
+        const req = apiClient.get<T>(this.endpoint, {signal: controller.signal, ...this.requestConfig});
         return {req, cancel: () => controller.abort()}
     }
 }
