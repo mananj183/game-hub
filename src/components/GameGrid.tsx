@@ -1,10 +1,8 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import useGames from "../hooks/use-games";
+import useGames from "../react-query/hooks/use-games";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { Genre } from "../hooks/use-genres";
-import { Platform } from "../hooks/use-platforms";
 import { GameQuery } from "../App";
 
 type Props = {
@@ -12,7 +10,7 @@ type Props = {
 };
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // create a dummy array with the item number equal to the number of skeletons objects we want to display on the screen
   return (
@@ -27,10 +25,10 @@ const GameGrid = ({ gameQuery }: Props) => {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      {data.length === 0 ? (
+      {data?.results.length === 0 ? (
         <Text>No Games Found</Text>
       ) : (
-        data.map((game) => (
+        data?.results.map((game) => (
           <GameCardContainer key={game.id}>
             <GameCard game={game}></GameCard>
           </GameCardContainer>

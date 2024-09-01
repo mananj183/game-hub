@@ -1,6 +1,6 @@
 import { Heading } from "@chakra-ui/react";
-import { Genre } from "../hooks/use-genres";
-import { Platform } from "../hooks/use-platforms";
+import { Genre } from "../react-query/services/genreService";
+import { Platform } from "../react-query/services/platformService";
 
 type Props = {
   genre: Genre | null;

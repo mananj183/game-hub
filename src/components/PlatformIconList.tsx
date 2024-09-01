@@ -1,4 +1,3 @@
-import { Platform } from "../hooks/use-platforms";
 import { HStack, Icon, Text } from "@chakra-ui/react";
 import {
   FaWindows,
@@ -12,6 +11,7 @@ import { MdPhoneIphone } from "react-icons/md"; // md: MAterial design
 import { SiNintendo } from "react-icons/si"; // si: simple icons
 import { BsGlobe } from "react-icons/bs"; // bs: Bootstrap
 import { IconType } from "react-icons";
+import { Platform } from "../react-query/services/platformService";
 
 type Props = {
   platforms: Platform[];
