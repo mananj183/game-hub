@@ -8,7 +8,7 @@ const usePlatforms = () => useQuery<FetchResponse<Platform>, Error>({
     queryKey: CACHED_KEY_PLATFORMS,
     queryFn: platformService.getAll,    
     staleTime: 24 * 60 * 60 * 1000,  // 24hrs
-    initialData: {count: platforms.length, next: "", results: platforms}  
+    initialData: platforms 
 });
 
 export default usePlatforms;

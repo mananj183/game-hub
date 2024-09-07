@@ -6,4 +6,4 @@ export type Platform = {
     slug: string;
 }
 
-export default  new HttpService<Platform>('/platforms/list/parents')
+export default  new HttpService<Platform>('/platforms/lists/parents')
