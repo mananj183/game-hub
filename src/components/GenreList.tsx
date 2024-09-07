@@ -9,13 +9,12 @@ import {
 import useGenres from "../react-query/hooks/use-genres";
 import getCroppedImageUrl from "../react-query/services/image-url";
 import GenreListSkeleton from "./GenreListSkeleton";
-import { Genre } from "../react-query/services/genreService";
 
 type Props = {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  onSelectGenre: (genreId: number) => void;
+  selectedGenreId?: number;
 };
-const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
+const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
   const { data: genres, error, isLoading } = useGenres();
   const genreListSkeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
@@ -40,13 +39,13 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 borderRadius={8}
               />
               <Button
-                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
                 fontSize="lg"
                 whiteSpace="normal"
                 textAlign="left"
                 variant="link"
                 onClick={() => {
-                  onSelectGenre(genre);
+                  onSelectGenre(genre.id);
                 }}
               >
                 {genre.name}

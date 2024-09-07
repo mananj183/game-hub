@@ -10,8 +10,8 @@ import { Genre } from "./react-query/services/genreService";
 import { Platform } from "./react-query/services/platformService";
 
 export type GameQuery = {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId?: number;
+  platformId?: number;
   ordering: string;
   search: string;
   page: number | 1;
@@ -39,21 +39,24 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           <GenreList
-            selectedGenre={gameQuery.genre}
-            onSelectGenre={(genre) =>
-              setGameQuery({ ...gameQuery, genre: genre })
+            selectedGenreId={gameQuery.genreId}
+            onSelectGenre={(genreId) =>
+              setGameQuery({ ...gameQuery, genreId: genreId })
             }
           />
         </GridItem>
       </Show>
       <GridItem area="main">
         <VStack align={"flex-start"} paddingLeft={3} marginBottom={4}>
-          <GameHeading genre={gameQuery.genre} platform={gameQuery.platform} />
+          <GameHeading
+            genreId={gameQuery.genreId}
+            platformId={gameQuery.platformId}
+          />
           <HStack spacing={5}>
             <PlatformSelector
-              selectedPlatform={gameQuery.platform}
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform: platform })
+              selectedPlatformId={gameQuery.platformId}
+              onSelectPlatform={(platformId) =>
+                setGameQuery({ ...gameQuery, platformId: platformId })
               }
             />
             <SortSelector

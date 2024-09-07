@@ -7,8 +7,8 @@ const useGames = (gameQuery: GameQuery) => useInfiniteQuery<FetchResponse<Game>,
   queryKey: ['games', gameQuery],
   queryFn: ({pageParam = 1}) => gamesService({
     params: {
-      genres: gameQuery.genre?.id, 
-      parent_platforms: gameQuery.platform?.id, 
+      genres: gameQuery.genreId, 
+      parent_platforms: gameQuery.platformId, 
       ordering: gameQuery.ordering, 
       search: gameQuery.search,
       page: pageParam
