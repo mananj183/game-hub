@@ -5,6 +5,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { GameQuery } from "../App";
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 type Props = {
   gameQuery: GameQuery;
@@ -21,8 +22,25 @@ const GameGrid = ({ gameQuery }: Props) => {
   if (error) return <Text>{error.message}</Text>;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // create a dummy array with the item number equal to the number of skeletons objects we want to display on the screen
+  const numberOfGames = data?.pages.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.results.length,
+    0
+  );
   return (
-    <Box padding="10px">
+    <InfiniteScroll
+      dataLength={numberOfGames || 0}
+      next={fetchNextPage}
+      hasMore={hasNextPage || false} // or we can use !!hasNextPage -> double ! will convert the undefined into boolean value false
+      loader={
+        <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+          {skeletons.map((skeleton) => (
+            <GameCardContainer key={skeleton}>
+              <GameCardSkeleton />
+            </GameCardContainer>
+          ))}
+        </SimpleGrid>
+      }
+    >
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
         {isLoading &&
           skeletons.map((skeleton) => (
@@ -46,14 +64,7 @@ const GameGrid = ({ gameQuery }: Props) => {
           })
         )}
       </SimpleGrid>
-      <Button
-        marginY="10px"
-        disabled={!hasNextPage || isFetchingNextPage}
-        onClick={() => fetchNextPage()}
-      >
-        {isFetchingNextPage ? "Loading..." : "Load More"}
-      </Button>
-    </Box>
+    </InfiniteScroll>
   );
 };
 
